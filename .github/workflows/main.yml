@@ -1,0 +1,24 @@
+name: ESP32 UART Toggle Test
+
+on:
+  push:
+
+jobs:
+  uart-test:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile Sender
+        run: .\arduino-cli.exe compile --fqbn esp32:esp32:esp32 sender
+
+      - name: Compile Receiver
+        run: .\arduino-cli.exe compile --fqbn esp32:esp32:esp32 receiver
+
+      - name: Upload Receiver
+        run: .\arduino-cli.exe upload -p COM7 --fqbn esp32:esp32:esp32 receiver
+
+      - name: Upload Sender
+        run: .\arduino-cli.exe upload -p COM6 --fqbn esp32:esp32:esp32 sender

@@ -15,4 +15,4 @@ jobs:
         run: pip install pyserial
 
       - name: Run ESP32 UART test
-        run: run_uart_test.bat
+        run: esp32_uart.bat

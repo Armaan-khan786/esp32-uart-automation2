@@ -11,14 +11,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Compile Sender
-        run: .\arduino-cli.exe compile --fqbn esp32:esp32:esp32 sender
+      - name: Install Python dependency
+        run: pip install pyserial
 
-      - name: Compile Receiver
-        run: .\arduino-cli.exe compile --fqbn esp32:esp32:esp32 receiver
-
-      - name: Upload Receiver
-        run: .\arduino-cli.exe upload -p COM7 --fqbn esp32:esp32:esp32 receiver
-
-      - name: Upload Sender
-        run: .\arduino-cli.exe upload -p COM6 --fqbn esp32:esp32:esp32 sender
+      - name: Run ESP32 UART test
+        run: run_uart_test.bat
